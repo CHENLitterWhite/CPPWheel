@@ -1,0 +1,52 @@
+{
+    "tasks": [
+        {
+            "label": "mkdir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "cmake",    // 第一个动作,执行cmake(终端中在第一步:操作cmake..)
+            "command": "cmake",
+            "args": [
+                "-DCMAKE_BUILD_TYPE=Debug",
+                ".."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "dependsOn": [
+                "mkdir"
+            ]
+        },
+        {
+            "label": "make",      // 第二个动作,执行make(终端中在第二步:操作make)
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j4"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "dependsOn": [
+                "cmake"
+            ]
+        },
+        {
+            "label": "CMake Build",   // 把上面两个动作进行绑定(cmake .. 和 make 都是在build文件夹下进行操作)
+            "dependsOn": [
+                "make"
+            ]
+        }
+    ],
+    "version": "2.0.0"
+}
