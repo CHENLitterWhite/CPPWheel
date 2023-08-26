@@ -5,9 +5,12 @@ set(CMAKE_CXX_COMPILE_FEATURES "g++")
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_BUILD_TYPE Debug)
 
-include_directories(${PROJECT_SOURCE_DIR}/SsdpUdpGroup/include)
+# include_directories(${PROJECT_SOURCE_DIR}/UdpGroup/include)
+include_directories(${PROJECT_SOURCE_DIR}/GenericProgramming/STL/)
 
-aux_source_directory("${PROJECT_SOURCE_DIR}/SsdpUdpGroup/src" SOURCES)
+# aux_source_directory("${PROJECT_SOURCE_DIR}/UdpGroup/src" SOURCES)
+aux_source_directory("${PROJECT_SOURCE_DIR}/GenericProgramming/STL/**" SOURCES)
 aux_source_directory("${PROJECT_SOURCE_DIR}" SOURCES)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin)
-add_executable(SsdpUdpGroup ${SOURCES})
+
+add_executable(app ${SOURCES})
