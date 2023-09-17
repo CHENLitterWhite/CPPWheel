@@ -1,19 +1,18 @@
-#include "second.h"
-
-// g++ test.cpp -I./ -otestSec -Dcheck_mem_leak
+#include "mem.h"
 
 int main()
 {
-
-    void *p1 = malloc(10);
-    void *p2 = malloc(20);
-    void *p3 = malloc(30);
-    void *p4 = malloc(40);
+    init_gc("./mem", OPEN_TOTAL_INFO | OPEN_SINGLE_INFO | OPEN_THREAD_INFO);
+    
+    void* p1 = malloc(1);
+    void* p2 = malloc(1);
+    void* p3 = malloc(1);
 
     free(p1);
     free(p2);
-    free(p3);
-    free(p4);
-
+    free(p2);
+ 
+    total_gc();
+  
     return 0;
 }
