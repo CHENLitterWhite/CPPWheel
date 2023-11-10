@@ -1,6 +1,8 @@
 #ifdef __cplusplus
 extern "C"
 {
+#endif
+
 #include <cstddef>
 #include <iconv.h>
 #include <stddef.h>
@@ -41,6 +43,7 @@ int UnicodeToGBK(char* src, size_t srcLen, char* dst, size_t dstLen);
 // Unicode --> Unicode
 int UnicodeToGB2312(char* src, size_t srcLen, char* dst, size_t dstLen);
 //------------------------------------------------------------------------//
-}
 
+#ifdef __cplusplus
+}
 #endif
