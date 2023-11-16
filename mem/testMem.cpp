@@ -10,7 +10,7 @@ int main()
 
     free(p1);
     free(p2);
-    free(p2);
+    // free(p3);
  
     total_gc();
   
