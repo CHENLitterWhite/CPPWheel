@@ -1,0 +1,6 @@
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/lock)
+
+# add_definitions(-D__STDC_NO_ATOMICS__)
+
+SET(SRC_LISTS testAtomic.cpp)
+ADD_EXECUTABLE(lock ${SRC_LISTS})

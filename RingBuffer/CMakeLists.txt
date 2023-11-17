@@ -1,0 +1,6 @@
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/RingBuffer) 
+
+add_definitions(-DRINGBUFFER)
+SET(SRC_LISTS RingBuffer.cpp testRing.cpp)
+
+ADD_EXECUTABLE(ring ${SRC_LISTS})
