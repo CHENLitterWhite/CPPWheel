@@ -116,10 +116,22 @@ static void hander(struct mg_connection* c, int ev, void* ev_data, void* arg){
 
 }
 
+// void sigint_handler(int signum) {
+   
+//    printf("收到信号:%d\n", SIGINT);
+
+//    int q = atomic_load(&quit);
+//    if(q == 0){
+//     atomic_store(&quit, 1);
+//    }
+
+//    exit(0);
+// }
+
 int main(void){
 
     // 捕捉 ctrl + C 信号
-    
+    // signal(SIGINT, sigint_handler);
 
     atomic_store(&quit, 0);
 
@@ -135,6 +147,6 @@ int main(void){
 	}
 
     mg_mgr_free(&m_mgr);
-
+    
     return 0;
 }
