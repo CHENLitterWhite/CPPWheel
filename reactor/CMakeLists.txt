@@ -1,0 +1,3 @@
+SET(SRC_LISTS reactor.c)
+
+ADD_EXECUTABLE(reactor ${SRC_LISTS})
