@@ -14,9 +14,10 @@
 #include <fcntl.h>
 #include <sys/time.h>
 
+
 #define MAX_BUFFER		128
 #define MAX_EPOLLSIZE	(384*1024)
-#define MAX_PORT		1
+#define MAX_PORT		20
 
 #define TIME_SUB_MS(tv1, tv2)  ((tv1.tv_sec - tv2.tv_sec) * 1000 + (tv1.tv_usec - tv2.tv_usec) / 1000)
 
@@ -72,7 +73,7 @@ int main(int argc, char **argv) {
 		struct epoll_event ev;
 		int sockfd = 0;
 
-		if (connections < 380000 && !isContinue) {
+		if (connections < 340000 && !isContinue) {
 			sockfd = socket(AF_INET, SOCK_STREAM, 0);
 			if (sockfd == -1) {
 				perror("socket");
@@ -99,7 +100,7 @@ int main(int argc, char **argv) {
 			connections ++;
 		}
 		//connections ++;
-		if (connections % 1000 == 999 || connections >= 380000) {
+		if (connections % 1000 == 999 || connections >= 400000) {
 			struct timeval tv_cur;
 			memcpy(&tv_cur, &tv_begin, sizeof(struct timeval));
 			
@@ -113,13 +114,13 @@ int main(int argc, char **argv) {
 				int clientfd = events[i].data.fd;
 
 				if (events[i].events & EPOLLOUT) {
-					sprintf(buffer, "data from %d\n", clientfd);
-					send(sockfd, buffer, strlen(buffer), 0);
+					//sprintf(buffer, "data from %d\n", clientfd);
+					//send(sockfd, buffer, strlen(buffer), 0);
 				} else if (events[i].events & EPOLLIN) {
 					char rBuffer[MAX_BUFFER] = {0};				
 					ssize_t length = recv(sockfd, rBuffer, MAX_BUFFER, 0);
 					if (length > 0) {
-						printf(" RecvBuffer:%s\n", rBuffer);
+						//printf(" RecvBuffer:%s\n", rBuffer);
 
 						if (!strcmp(rBuffer, "quit")) {
 							isContinue = 0;
@@ -142,7 +143,7 @@ int main(int argc, char **argv) {
 			}
 		}
 
-		usleep(1 * 1000);
+		usleep(500);
 	}
 
 	return 0;
@@ -152,3 +153,6 @@ err:
 	return 0;
 	
 }
+
+
+
