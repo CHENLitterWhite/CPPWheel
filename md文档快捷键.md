@@ -46,7 +46,7 @@ Z<sub>a</sub>
 
 
 
-
+ctrl + alt + V
 
 
 
